@@ -1,0 +1,176 @@
+%dw 1.0
+%output application/xml
+---
+{
+	RFC_READ_TABLE: {
+		import: {
+			DELIMITER: ',',
+			NO_DATA: null,
+			QUERY_TABLE: 'MARC',
+			ROWCOUNT: null,
+			ROWSKIPS: null
+		},
+		tables: {
+			DATA: {
+				row: {
+					WA: 'MARC'
+				}
+			},
+			FIELDS: {
+				row: {
+					FIELDNAME: 'MANDT',
+					OFFSET: '000000',
+					LENGTH: '000000',
+					TYPE: 'c',
+					FIELDTEXT: 'MANDT'
+				},
+				row: {
+					FIELDNAME: 'MATNR',
+					OFFSET: '000000',
+					LENGTH: '000000',
+					TYPE: 'c',
+					FIELDTEXT: 'MATNR'
+				},
+				row: {
+					FIELDNAME: 'WERKS',
+					OFFSET: '000000',
+					LENGTH: '000000',
+					TYPE: 'c',
+					FIELDTEXT: 'WERKS'
+				},
+				row: {
+					FIELDNAME: 'DISMM',
+					OFFSET: '000000',
+					LENGTH: '000000',
+					TYPE: 'c',
+					FIELDTEXT: 'DISMM'
+				}
+			},
+OPTIONS: {
+				(payload map ((payload01 , indexOfPayload01) -> {
+					row: {
+						
+						TEXT: " ( MANDT IN ('" ++ payload01.MANDT ++ "') ) AND"
+						
+					}} when ((payload01.MANDT != null) and (indexOfPayload01 == 1) and (indexOfPayload01 == ((sizeOf payload)-1)))
+					otherwise {
+					row: {
+						
+						TEXT: " ( MANDT IN ('" ++ payload01.MANDT ++ "') OR"
+						
+					}}  when ((payload01.MATNR != null) and (indexOfPayload01 == 1) and (indexOfPayload01 != ((sizeOf payload)-1)) )
+					otherwise {
+						row: {
+						TEXT: " MANDT IN ('" ++ payload01.MANDT ++ "') OR"
+					}} when ((payload01.MANDT != null) and (indexOfPayload01 != ((sizeOf payload)-1)) and (indexOfPayload01 != 0)	)
+					otherwise {
+						row: {
+						
+						TEXT: " MANDT IN ('" ++ payload01.MANDT ++ "') ) AND"
+						
+					}
+					} when ((payload01.MANDT != null) and (indexOfPayload01 != 1) and (indexOfPayload01 == ((sizeOf payload)-1)))				
+					otherwise {
+						
+					}
+					
+				
+				)),
+				(payload map ((payload01 , indexOfPayload01) -> {
+					
+					row: {
+						
+						TEXT: " ( MATNR IN ('" ++ payload01.MATNR ++ "') ) AND"
+						
+					}} when ((payload01.MATNR != null) and (indexOfPayload01 == 1) and (indexOfPayload01 == ((sizeOf payload)-1)))
+					otherwise {
+						row: {
+						
+						TEXT: " ( MATNR IN ('" ++ payload01.MATNR ++ "') OR"
+						
+					}
+					} when ((payload01.MATNR != null) and (indexOfPayload01 == 1) and (indexOfPayload01 != ((sizeOf payload)-1)) )
+					otherwise {
+						row: {
+						TEXT: " MATNR IN ('" ++ payload01.MATNR ++ "') OR"
+					}} when ((payload01.MATNR != null) and (indexOfPayload01 != ((sizeOf payload)-1)) and (indexOfPayload01 != 0)	)
+					otherwise {
+						row: {
+						
+						TEXT: " MATNR IN ('" ++ payload01.MATNR ++ "') ) AND"
+						
+					}
+					} when ((payload01.MATNR != null) and (indexOfPayload01 != 1) and (indexOfPayload01 == ((sizeOf payload)-1)))				
+					otherwise {
+						
+					}
+					
+				
+				)),
+				(payload map ((payload01 , indexOfPayload01) -> {
+					
+					row: {
+						
+						TEXT: " ( WERKS IN ('" ++ payload01.WERKS ++ "') ) AND"
+						
+					}} when ((payload01.WERKS != null) and (payload01.WERKS != '    ') and (indexOfPayload01 == 1) and (indexOfPayload01 == ((sizeOf payload)-1)))
+					otherwise {
+						row: {
+						
+						TEXT: " ( WERKS IN ('" ++ payload01.WERKS ++ "') OR"
+						
+					}
+					} when ((payload01.WERKS != null) and (payload01.WERKS != '    ') and (indexOfPayload01 == 1) and (indexOfPayload01 != ((sizeOf payload)-1)) )
+					otherwise {
+						row: {
+						TEXT: " WERKS IN ('" ++ payload01.WERKS ++ "') OR"
+					}} when ((payload01.WERKS != null) and (payload01.WERKS != '    ') and (indexOfPayload01 != ((sizeOf payload)-1)) and (indexOfPayload01 != 0)	)
+					otherwise {
+						row: {
+						
+						TEXT: " WERKS IN ('" ++ payload01.WERKS ++ "') ) AND"
+						
+					}
+					} when ((payload01.WERKS != null) and (payload01.WERKS != '    ') and (indexOfPayload01 != 1) and (indexOfPayload01 == ((sizeOf payload)-1)))				
+					otherwise {
+						
+					}
+					
+				
+				)),
+				(payload map ((payload01 , indexOfPayload01) -> {
+					
+					row: {
+						
+						TEXT: "  DISMM IN ('" ++ payload01.DISMM ++ "')  "
+						
+					}} when ((payload01.DISMM != null) and (indexOfPayload01 == 1) and (indexOfPayload01 == ((sizeOf payload)-1)))
+					otherwise {
+						row: {
+						
+						TEXT: " ( DISMM IN ('" ++ payload01.DISMM ++ "') OR"
+						
+					}
+					} when ((payload01.DISMM != null) and (indexOfPayload01 == 1) and (indexOfPayload01 != ((sizeOf payload)-1)) )
+					otherwise {
+						row: {
+						TEXT: " DISMM IN ('" ++ payload01.DISMM ++ "') OR"
+					}} when ((payload01.DISMM != null) and (indexOfPayload01 != ((sizeOf payload)-1)) and (indexOfPayload01 != 0)	)
+					otherwise {
+						row: {
+						
+						TEXT: " DISMM IN ('" ++ payload01.DISMM ++ "')  "
+						
+					}
+					} when ((payload01.DISMM != null) and (indexOfPayload01 != 1) and (indexOfPayload01 == ((sizeOf payload)-1)))				
+					otherwise {
+						
+					}
+					
+				
+				))
+			}
+			
+		}
+	}
+}
