@@ -1,14 +1,1 @@
-[
-  {
-    "MANDT": "0601     000000000000048993Z025",
-    "MATNR": null,
-    "WERKS": null,
-    "DISMM": null
-  },
-  {
-    "MANDT": "0601     000000000000044871Z025",
-    "MATNR": null,
-    "WERKS": null,
-    "DISMM": null
-  }
-]
+ZZVINT_RFC_INBOUND_DATA 
