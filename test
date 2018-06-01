@@ -1,2 +1,4 @@
 ZZVINT_RFC_INBOUND_DATA 
  JCO_ERROR_SYSTEM_FAILURE: A condition specified dynamically has an unexpected format. (Remote shortdump: SAPSQL_WHERE_PARENTHESES in system BRO|acsxecc04)
+ 
+ com.sap.conn.jco.AbapException: (126) FIELD_NOT_VALID: FIELD_NOT_VALID
