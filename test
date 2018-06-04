@@ -8,3 +8,5 @@ Element XML           : <sap:outbound-endpoint exchange-pattern="request-respons
 --------------------------------------------------------------------------------
 Root Exception stack trace:
 com.sap.conn.jco.AbapException: (126) FIELD_NOT_VALID: FIELD_NOT_VALID
+
+ [JCoAPI] JCoClient.execute(RFC_READ_TABLE) threw an ABAP exception: com.sap.conn.jco.AbapException: (126) FIELD_NOT_VALID: FIELD_NOT_VALID
